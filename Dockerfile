@@ -21,7 +21,7 @@ RUN mkdir -pm755 /etc/apt/keyrings && \
 
 RUN apt update -y
 
-RUN apt install -y winehq-stable winbind xvfb jq lib32gcc-s1
+RUN apt install -y winehq-stable winbind xvfb jq lib32gcc-s1 unzip
 
 RUN rm -rf /var/lib/apt/lists/* && \
     apt clean && \
