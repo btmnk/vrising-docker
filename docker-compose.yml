@@ -1,20 +1,16 @@
-version: '3.3'
+version: "3.3"
 services:
   vrising:
-    image: ich777/steamcmd:vrising
+    build: .
     container_name: vrising
     network_mode: bridge
     environment:
-      - TZ=Europe/Paris
-      - GAME_ID=1829350
+      - TZ=Europe/Berlin
       - SERVER_NAME=[DE/EN] Zur Weltenesche|x3|TP+Items|No Wipes|PVP
       - WORLD_NAME=yggdrasil
-      - ENABLE_BEPINEX=true
-      - UID=1000
-      - GID=1000
     volumes:
-      - './steamcmd:/serverdata/steamcmd:rw'
-      - './serverfiles:/serverdata/serverfiles:rw'
+      - "./server:/mnt/vrising/server:rw"
+      - "./data:/mnt/vrising/data:rw"
     ports:
-      - '9876:9876/udp'
-      - '9877:9877/udp'
+      - "9876:9876/udp"
+      - "9877:9877/udp"
