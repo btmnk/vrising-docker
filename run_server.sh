@@ -14,7 +14,7 @@ echo "--- Update done"
 export  WINEDLLOVERRIDES="winhttp=n,b"
 
 BEPINEX_VR_TS_URL=https://v-rising.thunderstore.io/package/BepInEx/BepInExPack_V_Rising/
-CUR_V="$(find ${SERVER_DIR} -maxdepth 1 -name "BepInEx-*" | cut -d '-' -f2)"
+CUR_V="$(find ${server_dir} -maxdepth 1 -name "BepInEx-*" | cut -d '-' -f2)"
 BEPINEX_VR_API_DATA="$(curl -s -X GET https://thunderstore.io/c/v-rising/api/v1/package/b86fcaaf-297a-45c8-82a0-fcbd7806fdc4/ -H "accept: application/json")"
 LAT_V="$(echo ${BEPINEX_VR_API_DATA} | jq -r '.versions[0].version_number')"
 
@@ -24,11 +24,11 @@ if [ -z "${LAT_V}" ] && [ -z "${CUR_V}" ]; then
     exit 1
 fi
 
-if [ -f ${SERVER_DIR}/BepInEx.zip ]; then
-    rm -rf ${SERVER_DIR}/BepInEx.zip
+if [ -f ${server_dir}/BepInEx.zip ]; then
+    rm -rf ${server_dir}/BepInEx.zip
 fi
-if [ -f ${SERVER_DIR}/doorstop_config.ini ]; then
-    sed -i "/enabled=false/c\enabled=true" ${SERVER_DIR}/doorstop_config.ini
+if [ -f ${server_dir}/doorstop_config.ini ]; then
+    sed -i "/enabled=false/c\enabled=true" ${server_dir}/doorstop_config.ini
 fi
 
 echo "--- BepInEx for V Rising Version Check ---"
@@ -40,44 +40,44 @@ BEPINEX_VR_TS_DOWNLOAD_URL="$(echo ${BEPINEX_VR_API_DATA} | jq -r '.versions[0].
 
 if [ -z "${CUR_V}" ]; then
     echo "---BepInEx for V Rising not found, downloading and installing v${LAT_V}...---"
-    cd ${SERVER_DIR}
-    rm -rf ${SERVER_DIR}/BepInEx-*
-    if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${SERVER_DIR}/BepInEx.zip --user-agent=Mozilla --content-disposition -E -c "${BEPINEX_VR_TS_DOWNLOAD_URL}" ; then
+    cd ${server_dir}
+    rm -rf ${server_dir}/BepInEx-*
+    if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${server_dir}/BepInEx.zip --user-agent=Mozilla --content-disposition -E -c "${BEPINEX_VR_TS_DOWNLOAD_URL}" ; then
         echo "---Successfully downloaded BepInEx for V Rising v${LAT_V}---"
     else
         echo "---Something went wrong, can't download BepInEx for V Rising v${LAT_V}, putting container into sleep mode!---"
         sleep infinity
     fi
     mkdir -p /tmp/BepInEx
-    unzip -o ${SERVER_DIR}/BepInEx.zip -d /tmp/BepInEx
+    unzip -o ${server_dir}/BepInEx.zip -d /tmp/BepInEx
     if [ $? -eq 0 ];then
-        touch ${SERVER_DIR}/BepInEx-${LAT_V}
-        cp -rf /tmp/BepInEx/BepInEx*/* ${SERVER_DIR}/
-        cp /tmp/BepInEx/README* ${SERVER_DIR}/README_BepInEx_for_VRising.txt
-        rm -rf ${SERVER_DIR}/BepInEx.zip /tmp/BepInEx
+        touch ${server_dir}/BepInEx-${LAT_V}
+        cp -rf /tmp/BepInEx/BepInEx*/* ${server_dir}/
+        cp /tmp/BepInEx/README* ${server_dir}/README_BepInEx_for_VRising.txt
+        rm -rf ${server_dir}/BepInEx.zip /tmp/BepInEx
     else
         echo "---Unable to unzip BepInEx archive! Putting container into sleep mode!---"
         sleep infinity
     fi
 elif [ "$CUR_V" != "${LAT_V}" ]; then
     echo "---Version missmatch, BepInEx v$CUR_V installed, downloading and installing v${LAT_V}...---"
-    cd ${SERVER_DIR}
-    rm -rf ${SERVER_DIR}/BepInEx-$CUR_V
+    cd ${server_dir}
+    rm -rf ${server_dir}/BepInEx-$CUR_V
     mkdir /tmp/Backup
-    cp -R ${SERVER_DIR}/BepInEx/config /tmp/Backup/
-    if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${SERVER_DIR}/BepInEx.zip --user-agent=Mozilla --content-disposition -E -c "${BEPINEX_VR_TS_DOWNLOAD_URL}" ; then
+    cp -R ${server_dir}/BepInEx/config /tmp/Backup/
+    if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${server_dir}/BepInEx.zip --user-agent=Mozilla --content-disposition -E -c "${BEPINEX_VR_TS_DOWNLOAD_URL}" ; then
         echo "---Successfully downloaded BepInEx for V Rising v${LAT_V}---"
     else
         echo "---Something went wrong, can't download BepInEx for V Rising v${LAT_V}, putting container into sleep mode!---"
         sleep infinity
     fi
-    unzip -o ${SERVER_DIR}/BepInEx.zip -d /tmp/BepInEx 
+    unzip -o ${server_dir}/BepInEx.zip -d /tmp/BepInEx 
     if [ $? -eq 0 ];then
-        cp -rf /tmp/BepInEx/BepInEx*/* ${SERVER_DIR}/
-        cp /tmp/BepInEx/README* ${SERVER_DIR}/README_BepInEx_for_VRising.txt
-        touch ${SERVER_DIR}/BepInEx-${LAT_V}
-        cp -R /tmp/Backup/config ${SERVER_DIR}/BepInEx/
-        rm -rf ${SERVER_DIR}/BepInEx.zip /tmp/BepInEx /tmp/Backup
+        cp -rf /tmp/BepInEx/BepInEx*/* ${server_dir}/
+        cp /tmp/BepInEx/README* ${server_dir}/README_BepInEx_for_VRising.txt
+        touch ${server_dir}/BepInEx-${LAT_V}
+        cp -R /tmp/Backup/config ${server_dir}/BepInEx/
+        rm -rf ${server_dir}/BepInEx.zip /tmp/BepInEx /tmp/Backup
     else
         echo "---Unable to unzip BepInEx archive! Putting container into sleep mode!---"
         sleep infinity
@@ -90,17 +90,17 @@ export WINEARCH=win64
 export WINEPREFIX="$server_dir"/WINE64
 
 echo "--- Checking if WINE workdirectory is present ---"
-if [ ! -d ${SERVER_DIR}/WINE64 ]; then
+if [ ! -d ${server_dir}/WINE64 ]; then
 	echo "--- WINE workdirectory not found, creating please wait... ---"
-    mkdir ${SERVER_DIR}/WINE64
+    mkdir ${server_dir}/WINE64
 else
 	echo "--- WINE workdirectory found ---"
 fi
 
 echo "--- Checking if WINE is properly installed ---"
-if [ ! -d ${SERVER_DIR}/WINE64/drive_c/windows ]; then
+if [ ! -d ${server_dir}/WINE64/drive_c/windows ]; then
 	echo "--- Setting up WINE ---"
-    cd ${SERVER_DIR}
+    cd ${server_dir}
     winecfg > /dev/null 2>&1
     sleep 15
 else
@@ -113,4 +113,4 @@ find /tmp -name ".X99*" -exec rm -f {} \; > /dev/null 2>&1
 
 echo "--- Start Server ---"
 
-xvfb-run --auto-servernum --server-args='-screen 0 640x480x24:32' wine64 ${SERVER_DIR}/VRisingServer.exe -persistentDataPath ${DATA_DIR} -serverName "${SERVER_NAME}" -saveName "${WORLD_NAME}" -logFile ${SERVER_DIR}/logs/VRisingServer.log ${GAME_PARAMS}
+xvfb-run --auto-servernum --server-args='-screen 0 640x480x24:32' wine64 ${server_dir}/VRisingServer.exe -persistentDataPath ${data_dir} -serverName "${SERVER_NAME}" -saveName "${WORLD_NAME}" -logFile ${server_dir}/logs/VRisingServer.log ${GAME_PARAMS}
