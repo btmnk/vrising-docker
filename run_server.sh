@@ -86,6 +86,8 @@ elif [ "${CUR_V}" == "${LAT_V}" ]; then
     echo "---BepInEx v$CUR_V up-to-date---"
 fi
 
+# BEPINEX END
+
 export WINEARCH=win64
 export WINEPREFIX="$server_dir"/WINE64
 
@@ -107,10 +109,16 @@ else
 	echo "--- WINE properly set up ---"
 fi
 
-echo "--- Checking for old display lock files ---"
+echo "--- Updating winetricks ---"
+xvfb-run --auto-servernum --server-args='-screen 0 640x480x24:32' winetricks --self-update -q
 
+echo "--- Installing dotnet6 ---"
+xvfb-run --auto-servernum --server-args='-screen 0 640x480x24:32' winetricks dotnet6 -q
+
+echo "--- Checking for old display lock files ---"
 find /tmp -name ".X99*" -exec rm -f {} \; > /dev/null 2>&1
 
 echo "--- Start Server ---"
+cd ${server_dir}
 
 xvfb-run --auto-servernum --server-args='-screen 0 640x480x24:32' wine64 ${server_dir}/VRisingServer.exe -persistentDataPath ${data_dir} -serverName "${SERVER_NAME}" -saveName "${WORLD_NAME}" -logFile ${server_dir}/logs/VRisingServer.log ${GAME_PARAMS}
