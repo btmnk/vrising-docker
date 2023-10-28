@@ -110,7 +110,7 @@ else
 fi
 
 echo "--- Updating winetricks ---"
-xvfb-run --auto-servernum --server-args='-screen 0 640x480x24:32' winetricks --self-update -q
+xvfb-run --auto-servernum --server-args='-screen 0 640x480x24:32' echo "Y" | winetricks --self-update
 
 echo "--- Installing dotnet6 ---"
 xvfb-run --auto-servernum --server-args='-screen 0 640x480x24:32' winetricks dotnet6 -q
