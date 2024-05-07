@@ -28,8 +28,9 @@ RUN rm -rf /var/lib/apt/lists/* && \
     apt autoremove -y
 
 COPY run_server.sh /run_server.sh
-COPY update_bepinex.sh /update_bepinex.sh
-RUN chmod +x /run_server.sh && \
-    chmod +x /update_bepinex.sh
+RUN chmod +x /run_server.sh
+
+# COPY update_bepinex.sh /update_bepinex.sh
+# RUN chmod +x /update_bepinex.sh
 
 CMD ["/run_server.sh"]
