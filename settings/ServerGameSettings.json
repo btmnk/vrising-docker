@@ -1,14 +1,14 @@
 {
   "GameDifficulty": "Normal",
-  "GameModeType": "PvP",
+  "GameModeType": "PvE",
   "CastleDamageMode": "Never",
   "SiegeWeaponHealth": "Normal",
   "PlayerDamageMode": "Always",
   "CastleHeartDamageMode": "CanBeDestroyedByPlayers",
   "PvPProtectionMode": "Medium",
-  "DeathContainerPermission": "Anyone",
-  "RelicSpawnType": "Unique",
-  "CanLootEnemyContainers": true,
+  "DeathContainerPermission": "ClanMembers",
+  "RelicSpawnType": "Plentiful",
+  "CanLootEnemyContainers": false,
   "BloodBoundEquipment": true,
   "TeleportBoundItems": true,
   "BatBoundItems": false,
@@ -29,20 +29,20 @@
   "InventoryStacksModifier": 1.0,
   "DropTableModifier_General": 1.0,
   "DropTableModifier_Missions": 1.0,
-  "MaterialYieldModifier_Global": 1.0,
-  "BloodEssenceYieldModifier": 1.0,
+  "MaterialYieldModifier_Global": 1.5,
+  "BloodEssenceYieldModifier": 1.5,
   "JournalVBloodSourceUnitMaxDistance": 25.0,
   "PvPVampireRespawnModifier": 1.0,
   "CastleMinimumDistanceInFloors": 2,
-  "ClanSize": 4,
+  "ClanSize": 10,
   "BloodDrainModifier": 1.0,
-  "DurabilityDrainModifier": 1.0,
+  "DurabilityDrainModifier": 0.7,
   "GarlicAreaStrengthModifier": 1.0,
   "HolyAreaStrengthModifier": 1.0,
   "SilverStrengthModifier": 1.0,
   "SunDamageModifier": 1.0,
   "CastleDecayRateModifier": 1.0,
-  "CastleBloodEssenceDrainModifier": 1.0,
+  "CastleBloodEssenceDrainModifier": 0.8,
   "CastleSiegeTimer": 420.0,
   "CastleUnderAttackTimer": 60.0,
   "CastleRaidTimer": 600.0,
@@ -60,7 +60,7 @@
   "RefinementRateModifier": 1.0,
   "ResearchTimeModifier": 1.0,
   "DismantleResourceModifier": 1.0,
-  "ServantConvertRateModifier": 1.0,
+  "ServantConvertRateModifier": 10.0,
   "RepairCostModifier": 1.0,
   "Death_DurabilityFactorLoss": 0.125,
   "Death_DurabilityLossFactorAsResources": 1.0,
@@ -115,34 +115,34 @@
     "PrisonCellLimit": 16,
     "HeartLimits": {
       "Level1": {
-        "FloorLimit": 50,
+        "FloorLimit": 60,
         "ServantLimit": 4,
         "BuildLimits": 2,
         "HeightLimit": 3
       },
       "Level2": {
         "FloorLimit": 140,
-        "ServantLimit": 5,
-        "BuildLimits": 2,
-        "HeightLimit": 3
-      },
-      "Level3": {
-        "FloorLimit": 240,
         "ServantLimit": 6,
         "BuildLimits": 2,
-        "HeightLimit": 3
+        "HeightLimit": 4
       },
-      "Level4": {
-        "FloorLimit": 360,
-        "ServantLimit": 7,
-        "BuildLimits": 2,
-        "HeightLimit": 3
-      },
-      "Level5": {
-        "FloorLimit": 550,
+      "Level3": {
+        "FloorLimit": 280,
         "ServantLimit": 8,
         "BuildLimits": 2,
-        "HeightLimit": 3
+        "HeightLimit": 6
+      },
+      "Level4": {
+        "FloorLimit": 520,
+        "ServantLimit": 10,
+        "BuildLimits": 2,
+        "HeightLimit": 8
+      },
+      "Level5": {
+        "FloorLimit": 800,
+        "ServantLimit": 10,
+        "BuildLimits": 2,
+        "HeightLimit": 10
       }
     },
     "CastleLimit": 2,
