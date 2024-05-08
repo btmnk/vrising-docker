@@ -1,13 +1,14 @@
 FROM ubuntu:22.04
 
+ARG DEBIAN_FRONTEND="noninteractive"
+
 # Install Steam
 RUN apt update -y && \
-    apt upgrade -y && \
     apt install -y apt-utils software-properties-common wget && \
     add-apt-repository multiverse && \
     dpkg --add-architecture i386 && \
     apt update -y && \
-    apt upgrade -y 
+    apt upgrade -y
 
 RUN useradd -m steam && cd /home/steam && \
     echo steam steam/question select "I AGREE" | debconf-set-selections && \
@@ -21,7 +22,7 @@ RUN mkdir -pm755 /etc/apt/keyrings && \
 
 RUN apt update -y
 
-RUN apt install -y winehq-staging winbind xvfb jq lib32gcc-s1 unzip winetricks
+RUN apt install -y winehq-staging winbind xvfb xserver-xorg jq winetricks
 
 RUN rm -rf /var/lib/apt/lists/* && \
     apt clean && \
@@ -29,8 +30,5 @@ RUN rm -rf /var/lib/apt/lists/* && \
 
 COPY run_server.sh /run_server.sh
 RUN chmod +x /run_server.sh
-
-# COPY update_bepinex.sh /update_bepinex.sh
-# RUN chmod +x /update_bepinex.sh
 
 CMD ["/run_server.sh"]

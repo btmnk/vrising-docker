@@ -11,6 +11,7 @@ services:
     volumes:
       - "./server:/mnt/vrising/server:rw"
       - "./data:/mnt/vrising/data:rw"
+      - "./settings:/mnt/vrising/settings:rw"
     ports:
       - "9876:9876/udp"
       - "9877:9877/udp"

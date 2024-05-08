@@ -10,12 +10,12 @@ server_dir=/mnt/vrising/server
 # Save files and settings
 data_dir=/mnt/vrising/data
 
+# Settings
+settings_dir=/mnt/vrising/settings
+
 echo "--- Update server"
 /usr/bin/steamcmd +@sSteamCmdForcePlatformType windows +force_install_dir "$server_dir" +login anonymous +app_update 1829350 validate +quit
 echo "--- Update done"
-
-# Run Bepinex Updater
-. ./update_bepinex.sh $server_dir
 
 echo "--- Checking if WINE workdirectory is present ---"
 if [ ! -d ${server_dir}/WINE64 ]; then
@@ -25,26 +25,37 @@ else
 	echo "--- WINE workdirectory found ---"
 fi
 
-echo "--- Checking if WINE is properly installed ---"
-if [ ! -d ${server_dir}/WINE64/drive_c/windows ]; then
-	echo "--- Setting up WINE ---"
-    cd ${server_dir}
-    winecfg > /dev/null 2>&1
-    sleep 15
-else
-	echo "--- WINE properly set up ---"
+if ! grep -o 'avx[^ ]*' /proc/cpuinfo; then
+	unsupported_file="VRisingServer_Data/Plugins/x86_64/lib_burst_generated.dll"
+	echo "AVX or AVX2 not supported; Check if unsupported ${unsupported_file} exists"
+	if [ -f "${s}/${unsupported_file}" ]; then
+		echo "Changing ${unsupported_file} as attempt to fix issues..."
+		mv "${s}/${unsupported_file}" "${s}/${unsupported_file}.bak"
+	fi
 fi
 
-# echo "--- Updating winetricks ---"
-# xvfb-run --auto-servernum --server-args='-screen 0 640x480x24:32' echo "Y" | winetricks --self-update
+mkdir "$settings_dir" 2>/dev/null
+if [ ! -f "$settings_dir/ServerGameSettings.json" ]; then
+        echo "$settings_dir/ServerGameSettings.json not found. Copying default file."
+        cp "$server_dir/VRisingServer_Data/StreamingAssets/Settings/ServerGameSettings.json" "$settings_dir" 2>&1
+fi
+if [ ! -f "$settings_dir/ServerHostSettings.json" ]; then
+        echo "$settings_dir/ServerHostSettings.json not found. Copying default file."
+        cp "$server_dir/VRisingServer_Data/StreamingAssets/Settings/ServerHostSettings.json" "$settings_dir" 2>&1
+fi
 
-#echo "--- Installing dotnet6 ---"
-# xvfb-run --auto-servernum --server-args='-screen 0 640x480x24:32' winetricks dotnet6 -q
-
-echo "--- Checking for old display lock files ---"
-find /tmp -name ".X99*" -exec rm -f {} \; > /dev/null 2>&1
+echo "--- Copy settings to server ---"
+cp "$settings_dir/ServerHostSettings.json" "$server_dir/VRisingServer_Data/StreamingAssets/Settings/ServerHostSettings.json"
+cp "$settings_dir/ServerGameSettings.json" "$server_dir/VRisingServer_Data/StreamingAssets/Settings/ServerGameSettings.json"
 
 echo "--- Start Server ---"
 cd ${server_dir}
 
-xvfb-run --auto-servernum --server-args='-screen 0 640x480x24:32' wine64 ${server_dir}/VRisingServer.exe -persistentDataPath ${data_dir} -serverName "${SERVER_NAME}" -saveName "${WORLD_NAME}" -logFile ${server_dir}/logs/VRisingServer.log ${GAME_PARAMS}
+echo "--- Checking for old display lock files ---"
+rm /tmp/.X0-lock 2>&1
+
+echo "--- Starting Xvfb ---"
+Xvfb :0 -screen 0 1024x768x16 &
+
+echo "--- Launching wine64 V Rising ---"
+DISPLAY=:0.0 wine64 $server_dir/VRisingServer.exe -persistentDataPath $data_dir -serverName "$SERVER_NAME" -saveName "$WORLD_NAME" -logFile "$server_dir/VRisingServer.log"
