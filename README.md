@@ -1,6 +1,10 @@
 # Usage
 
-Connect to your server and clone this repository via `git clone git@github.com:btmnk/vrising-docker.git`. \
+### Clone the repo
+```sh
+git clone git@github.com:btmnk/vrising-docker.git
+```
+
 Run `docker compose up` and wait for ~2-3 minutes until you see something like the following:
 
 ```sh
@@ -22,3 +26,11 @@ After the server started once it will have downloaded the latest vrising server 
 
 Only edit the settings files in `/settings`, they will be copied to the actual server data when starting the server. \
 You will have to restart the server after changing settings.
+
+### Server List
+
+Make sure to set `ListOnSteam` and `ListOnEOS` to true in the `ServerHostSettings.json`
+
+### Ports
+
+By default VRising will use the ports 9876/udp and 9877/upd but you will also have to allow 27015 for steam to pick up your server for the server list.
