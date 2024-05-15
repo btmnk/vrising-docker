@@ -1,6 +1,6 @@
 # Usage
 
-Connect to your server and clone this repository via `git clone git@github.com:btmnk/vrising-docker.git`.
+Connect to your server and clone this repository via `git clone git@github.com:btmnk/vrising-docker.git`. \
 Run `docker compose up` and wait for ~2-3 minutes until you see something like the following:
 
 ```sh
