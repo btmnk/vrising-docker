@@ -19,7 +19,7 @@ RUN useradd -m steam && cd /home/steam && \
     ln -s /usr/games/steamcmd /usr/bin/steamcmd
 
 # Install Wine
-RUN apt install -y libgl1-mesa-glx:i386
+RUN apt install -y gdebi-core libgl1-mesa-glx:i386
 RUN apt install -y wine winbind winetricks
 RUN apt install -y xvfb xserver-xorg
 

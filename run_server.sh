@@ -11,7 +11,10 @@ settings_dir=/mnt/vrising/settings
 
 export WINEDLLOVERRIDES="winhttp=n,b"
 export WINEARCH=win64
-export WINEPREFIX="$server_dir"/WINE64
+export WINEPREFIX="$server_dir"/.wine64
+
+mkdir -p /root/.steam 2>/dev/null
+chmod -R 777 /root/.steam 2>/dev/null
 
 echo "--- Update server"
 /usr/bin/steamcmd +@sSteamCmdForcePlatformType windows +force_install_dir "$server_dir" +login anonymous +app_update 1829350 validate +quit
@@ -55,4 +58,15 @@ echo "--- Starting Xvfb ---"
 Xvfb :0 -screen 0 1024x768x16 &
 
 echo "--- Launching wine64 V Rising ---"
-DISPLAY=:0.0 wine64 $server_dir/VRisingServer.exe -persistentDataPath $data_dir -serverName "$SERVER_NAME" -saveName "$WORLD_NAME" -logFile "$server_dir/VRisingServer.log"
+start_server() {
+	DISPLAY=:0.0 wine64 $server_dir/VRisingServer.exe -persistentDataPath $data_dir -serverName "$SERVER_NAME" -logFile "$server_dir/VRisingServer.log" 2>&1 &
+}
+
+start_server
+
+# Gets the PID of the last command
+ServerPID=$!
+
+# Tail log file and waits for Server PID to exit
+/usr/bin/tail -n 0 -f "$p/$logfile" &
+wait $ServerPID
