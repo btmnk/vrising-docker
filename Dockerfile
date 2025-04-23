@@ -2,6 +2,8 @@ FROM ubuntu:22.04
 
 ARG DEBIAN_FRONTEND="noninteractive"
 
+RUN apt update -y
+
 # Common dependencies
 RUN apt install -y apt-utils software-properties-common wget && \
     add-apt-repository multiverse && \
