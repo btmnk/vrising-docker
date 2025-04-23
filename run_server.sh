@@ -68,5 +68,5 @@ start_server
 ServerPID=$!
 
 # Tail log file and waits for Server PID to exit
-/usr/bin/tail -n 0 -f "$p/$logfile" &
+/usr/bin/tail -n 0 -f "$server_dir/VRisingServer.log" &
 wait $ServerPID
