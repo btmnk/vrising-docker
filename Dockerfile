@@ -20,7 +20,7 @@ RUN useradd -m steam && cd /home/steam && \
 
 # Install Wine
 RUN apt install -y gdebi-core libgl1-mesa-glx:i386
-RUN apt install -y wine winbind winetricks
+RUN apt install -y wine wine32 wine64 winbind winetricks
 RUN apt install -y xvfb xserver-xorg
 
 RUN rm -rf /var/lib/apt/lists/* && \
