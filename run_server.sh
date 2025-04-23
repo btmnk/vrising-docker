@@ -17,7 +17,7 @@ mkdir -p /root/.steam 2>/dev/null
 chmod -R 777 /root/.steam 2>/dev/null
 
 echo "--- Update server"
-/usr/bin/steamcmd +@sSteamCmdForcePlatformType windows +force_install_dir "$server_dir" +login anonymous +app_update 1829350 validate +quit
+/usr/bin/steamcmd +@sSteamCmdForcePlatformType windows +force_install_dir "$server_dir" +login anonymous +app_update 1829350 +app_update 1007 validate +quit
 echo "--- Update done"
 
 echo "--- Checking if WINE workdirectory is present ---"
