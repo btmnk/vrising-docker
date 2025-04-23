@@ -1,9 +1,5 @@
 #!/bin/bash
 
-export WINEDLLOVERRIDES="winhttp=n,b"
-export WINEARCH=win64
-export WINEPREFIX="$server_dir"/WINE64
-
 # Server files
 server_dir=/mnt/vrising/server
 
@@ -12,6 +8,10 @@ data_dir=/mnt/vrising/data
 
 # Settings
 settings_dir=/mnt/vrising/settings
+
+export WINEDLLOVERRIDES="winhttp=n,b"
+export WINEARCH=win64
+export WINEPREFIX="$server_dir"/WINE64
 
 echo "--- Update server"
 /usr/bin/steamcmd +@sSteamCmdForcePlatformType windows +force_install_dir "$server_dir" +login anonymous +app_update 1829350 validate +quit
@@ -47,9 +47,6 @@ fi
 echo "--- Copy settings to server ---"
 cp "$settings_dir/ServerHostSettings.json" "$server_dir/VRisingServer_Data/StreamingAssets/Settings/ServerHostSettings.json"
 cp "$settings_dir/ServerGameSettings.json" "$server_dir/VRisingServer_Data/StreamingAssets/Settings/ServerGameSettings.json"
-
-echo "--- Start Server ---"
-cd ${server_dir}
 
 echo "--- Checking for old display lock files ---"
 rm /tmp/.X0-lock 2>&1
