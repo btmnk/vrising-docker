@@ -5,8 +5,6 @@ services:
     network_mode: bridge
     environment:
       - TZ=Europe/Berlin
-      - SERVER_NAME=[DE/EN] Zur Weltenesche
-      - WORLD_NAME=yggdrasil
     volumes:
       - "./server:/mnt/vrising/server"
       - "./data:/mnt/vrising/data"

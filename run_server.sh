@@ -31,6 +31,11 @@ else
 	echo "--- WINE workdirectory found ---"
 fi
 
+# Create logfile so it can be tailed before the server generates it
+if [ ! -f "$settings_dir/ServerGameSettings.json" ]; then
+	touch "$server_dir/VRisingServer.log"
+fi
+
 mkdir "$settings_dir" 2>/dev/null
 if [ ! -f "$settings_dir/ServerGameSettings.json" ]; then
         echo "$settings_dir/ServerGameSettings.json not found. Copying default file."
@@ -54,18 +59,13 @@ Xvfb :0 -screen 0 1024x768x16 &
 echo "--- Launching wine64 V Rising ---"
 start_server() {
         export SteamAppId=1604030
-	DISPLAY=:0.0 wine64 $server_dir/VRisingServer.exe -persistentDataPath $data_dir -serverName "$SERVER_NAME" -logFile "$server_dir/VRisingServer.log" 2>&1 &
+	DISPLAY=:0.0 wine64 $server_dir/VRisingServer.exe -persistentDataPath $data_dir -logFile "$server_dir/VRisingServer.log" 2>&1 &
 }
 
 start_server
 
 # Gets the PID of the last command
 ServerPID=$!
-
-# Create logfile if server was not fast enough to create it
-if [ ! -f "$settings_dir/ServerGameSettings.json" ]; then
-	touch "$server_dir/VRisingServer.log"
-fi
 
 # Tail log file and waits for Server PID to exit
 /usr/bin/tail -n 0 -F "$server_dir/VRisingServer.log" &
