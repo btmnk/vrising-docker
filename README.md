@@ -5,22 +5,7 @@
 git clone git@github.com:btmnk/vrising-docker.git
 ```
 
-Run `docker compose up` and wait for ~2-3 minutes until you see something like the following:
-
-```sh
-0144:fixme:kernelbase:AppPolicyGetThreadInitializationType FFFFFFFFFFFFFFFA, 000000007292FF50
-0024:fixme:nls:GetFileMUIPath stub: 0x10, L"C:\\windows\\system32\\tzres.dll", (null), 000000000010CD08, 000000006CC85800, 000000000010CD00, 000000000010CCA0
-0024:fixme:nls:GetFileMUIPath stub: 0x10, L"C:\\windows\\system32\\tzres.dll", (null), 000000000010CD08, 000000006CC85800, 000000000010CD00, 000000000010CCA0
-0024:fixme:nls:GetFileMUIPath stub: 0x10, L"C:\\windows\\system32\\tzres.dll", (null), 000000000010CD08, 000000006CC85800, 000000000010CD00, 000000000010CCA0
-014c:fixme:kernelbase:AppPolicyGetThreadInitializationType FFFFFFFFFFFFFFFA, 0000000072B2FF50
-0024:fixme:file:NtLockFile I/O completion on lock not implemented yet
-0158:fixme:file:NtLockFile I/O completion on lock not implemented yet
-0158:fixme:process:SetProcessShutdownParameters (00000100, 00000001): partial stub.
-0024:fixme:file:CopyFileExW cancel_ptr is not supported
-0130:fixme:cryptnet:check_ocsp_response_info check responder id
-```
-
-Unfortunately the output doesn't properly tell you when the server is up and running.
+Run `docker compose up` or `docker compose up -d`
 
 After the server started once it will have downloaded the latest vrising server files into `/server`, save data into `/data` and a copy of the server settings into `/settings`.
 
@@ -29,8 +14,9 @@ You will have to restart the server after changing settings.
 
 ### Server List
 
-Make sure to set `ListOnSteam` and `ListOnEOS` to true in the `ServerHostSettings.json`
+Make sure to set `ListOnSteam` and `ListOnEOS` to `true` in the `ServerHostSettings.json`
 
 ### Ports
 
-By default VRising will use the ports 9876/udp and 9877/upd but you will also have to allow 27015 for steam to pick up your server for the server list.
+By default VRising will use the ports 9876/udp and 9877/upd but you can change them if you need to. \
+Make sure to adjust the docker-compose.yml and the `ServerHostSettings.json`.
