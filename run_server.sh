@@ -3,13 +3,13 @@
 # Server files
 server_dir=/mnt/vrising/server
 
-# Save files and settings
+# Save files
 data_dir=/mnt/vrising/data
 
 # Settings
 settings_dir=/mnt/vrising/settings
 
-export WINEDLLOVERRIDES="winhttp=n,b"
+# export WINEDLLOVERRIDES="winhttp=n,b"
 export WINEARCH=win64
 export WINEPREFIX="$server_dir"/.wine64
 
@@ -17,25 +17,25 @@ mkdir -p /root/.steam 2>/dev/null
 chmod -R 777 /root/.steam 2>/dev/null
 
 echo "--- Update server"
-/usr/bin/steamcmd +@sSteamCmdForcePlatformType windows +force_install_dir "$server_dir" +login anonymous +app_update 1829350 +app_update 1007 validate +quit
+/usr/bin/steamcmd +@sSteamCmdForcePlatformType windows +force_install_dir "$server_dir" +login anonymous +app_update 1829350 validate +quit
 echo "--- Update done"
 
 echo "--- Checking if WINE workdirectory is present ---"
-if [ ! -d ${server_dir}/WINE64 ]; then
+if [ ! -d ${WINEPREFIX} ]; then
 	echo "--- WINE workdirectory not found, creating please wait... ---"
-    mkdir ${server_dir}/WINE64
+    mkdir ${WINEPREFIX}
 else
 	echo "--- WINE workdirectory found ---"
 fi
 
-if ! grep -o 'avx[^ ]*' /proc/cpuinfo; then
-	unsupported_file="VRisingServer_Data/Plugins/x86_64/lib_burst_generated.dll"
-	echo "AVX or AVX2 not supported; Check if unsupported ${unsupported_file} exists"
-	if [ -f "${s}/${unsupported_file}" ]; then
-		echo "Changing ${unsupported_file} as attempt to fix issues..."
-		mv "${s}/${unsupported_file}" "${s}/${unsupported_file}.bak"
-	fi
-fi
+# if ! grep -o 'avx[^ ]*' /proc/cpuinfo; then
+# 	unsupported_file="VRisingServer_Data/Plugins/x86_64/lib_burst_generated.dll"
+# 	echo "AVX or AVX2 not supported; Check if unsupported ${unsupported_file} exists"
+# 	if [ -f "${s}/${unsupported_file}" ]; then
+# 		echo "Changing ${unsupported_file} as attempt to fix issues..."
+# 		mv "${s}/${unsupported_file}" "${s}/${unsupported_file}.bak"
+# 	fi
+# fi
 
 mkdir "$settings_dir" 2>/dev/null
 if [ ! -f "$settings_dir/ServerGameSettings.json" ]; then
@@ -67,6 +67,11 @@ start_server
 # Gets the PID of the last command
 ServerPID=$!
 
+# Create logfile if server was not fast enough to create it
+if [ ! -f "$settings_dir/ServerGameSettings.json" ]; then
+	touch "$server_dir/VRisingServer.log"
+fi
+
 # Tail log file and waits for Server PID to exit
-/usr/bin/tail -n 0 -f "$server_dir/VRisingServer.log" &
+/usr/bin/tail -n 0 -F "$server_dir/VRisingServer.log" &
 wait $ServerPID

@@ -8,9 +8,9 @@ services:
       - SERVER_NAME=[DE/EN] Zur Weltenesche
       - WORLD_NAME=yggdrasil
     volumes:
-      - "./server:/mnt/vrising/server:rw"
-      - "./data:/mnt/vrising/data:rw"
-      - "./settings:/mnt/vrising/settings:rw"
+      - "./server:/mnt/vrising/server"
+      - "./data:/mnt/vrising/data"
+      - "./settings:/mnt/vrising/settings"
     ports:
       - "9876:9876/udp"
       - "9877:9877/udp"
