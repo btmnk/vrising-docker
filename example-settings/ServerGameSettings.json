@@ -1,0 +1,212 @@
+{
+    "AllWaypointsUnlocked": false,
+    "AllowGlobalChat": true,
+    "AnnounceSiegeWeaponSpawn": true,
+    "BatBoundItems": false,
+    "BloodBoundEquipment": true,
+    "BloodDrainModifier": 1,
+    "BloodEssenceYieldModifier": 1,
+    "BuildCostModifier": 1,
+    "CanLootEnemyContainers": false,
+    "CastleBloodEssenceDrainModifier": 1,
+    "CastleDamageMode": "Never",
+    "CastleDecayRateModifier": 1,
+    "CastleExposedFreeClaimTimer": 300,
+    "CastleHeartDamageMode": "CanBeDestroyedOnlyWhenDecaying",
+    "CastleMinimumDistanceInFloors": 2,
+    "CastleRaidProtectionTime": 1800,
+    "CastleRaidTimer": 600,
+    "CastleRelocationCooldown": 10800,
+    "CastleRelocationEnabled": true,
+    "CastleSiegeTimer": 60,
+    "CastleStatModifiers_Global": {
+        "CastleLimit": 2,
+        "EyeStructuresLimit": 1,
+        "HeartLimits": {
+            "Level1": {
+                "FloorLimit": 80,
+                "HeightLimit": 3,
+                "ServantLimit": 5
+            },
+            "Level2": {
+                "FloorLimit": 160,
+                "HeightLimit": 4,
+                "ServantLimit": 10
+            },
+            "Level3": {
+                "FloorLimit": 260,
+                "HeightLimit": 5,
+                "ServantLimit": 15
+            },
+            "Level4": {
+                "FloorLimit": 420,
+                "HeightLimit": 7,
+                "ServantLimit": 20
+            },
+            "Level5": {
+                "FloorLimit": 860,
+                "HeightLimit": 10,
+                "ServantLimit": 20
+            }
+        },
+        "NetherGateLimit": 1,
+        "PrisonCellLimit": 16,
+        "SafetyBoxLimit": 1,
+        "ThroneOfDarknessLimit": 1,
+        "TickPeriod": 5,
+        "TombLimit": 12,
+        "VerminNestLimit": 4
+    },
+    "CastleUnderAttackTimer": 30,
+    "ClanSize": 6,
+    "CraftRateModifier": 1,
+    "DeathContainerPermission": "ClanMembers",
+    "Death_DurabilityFactorLoss": 0.125,
+    "Death_DurabilityLossFactorAsResources": 1,
+    "DisableDisconnectedDeadEnabled": true,
+    "DisableDisconnectedDeadTimer": 60,
+    "DisconnectedSunImmunityTime": 300,
+    "DismantleResourceModifier": 1,
+    "DropTableModifier_General": 1,
+    "DropTableModifier_Missions": 1,
+    "DurabilityDrainModifier": 0.8,
+    "EquipmentStatModifiers_Global": {
+        "MaxHealthModifier": 1,
+        "MovementSpeedModifier": 1,
+        "PhysicalPowerModifier": 1,
+        "ResourceYieldModifier": 1,
+        "SiegePowerModifier": 1,
+        "SpellPowerModifier": 1
+    },
+    "FreeCastleClaim": false,
+    "FreeCastleDestroy": false,
+    "FreeCastleRaid": false,
+    "GameDifficulty": "2",
+    "GameModeType": "PvE",
+    "GameTimeModifiers": {
+        "BloodMoonBuff": 0.2,
+        "BloodMoonFrequency_Max": 18,
+        "BloodMoonFrequency_Min": 10,
+        "DayDurationInSeconds": 1080,
+        "DayEndHour": 17,
+        "DayEndMinute": 0,
+        "DayStartHour": 9,
+        "DayStartMinute": 0
+    },
+    "GarlicAreaStrengthModifier": 1,
+    "HolyAreaStrengthModifier": 1,
+    "InactivityKillEnabled": true,
+    "InactivityKillSafeTimeAddition": 172800,
+    "InactivityKillTimeMax": 604800,
+    "InactivityKillTimeMin": 3600,
+    "InactivityKillTimerMaxItemLevel": 84,
+    "InventoryStacksModifier": 2,
+    "JournalVBloodSourceUnitMaxDistance": 25,
+    "MaterialYieldModifier_Global": 1,
+    "PlayerDamageMode": "Always",
+    "PlayerInteractionSettings": {
+        "TimeZone": "Local",
+        "VSCastleWeekdayTime": {
+            "EndHour": 23,
+            "EndMinute": 0,
+            "StartHour": 23,
+            "StartMinute": 0
+        },
+        "VSCastleWeekendTime": {
+            "EndHour": 23,
+            "EndMinute": 0,
+            "StartHour": 23,
+            "StartMinute": 0
+        },
+        "VSPlayerWeekdayTime": {
+            "EndHour": 23,
+            "EndMinute": 0,
+            "StartHour": 23,
+            "StartMinute": 0
+        },
+        "VSPlayerWeekendTime": {
+            "EndHour": 23,
+            "EndMinute": 0,
+            "StartHour": 23,
+            "StartMinute": 0
+        }
+    },
+    "PvPProtectionMode": "Short",
+    "PvPVampireRespawnModifier": 1,
+    "RecipeCostModifier": 1,
+    "RefinementCostModifier": 1,
+    "RefinementRateModifier": 1,
+    "RelicSpawnType": "Plentiful",
+    "RepairCostModifier": 1,
+    "ResearchCostModifier": 1,
+    "ResearchTimeModifier": 1,
+    "ServantConvertRateModifier": 1,
+    "ShowSiegeWeaponMapIcon": false,
+    "SiegeWeaponHealth": "Normal",
+    "SilverStrengthModifier": 1,
+    "StarterEquipmentId": 0,
+    "StarterResourcesId": 0,
+    "StartingProgressionLevel": 0,
+    "SunDamageModifier": 1,
+    "TeleportBoundItems": false,
+    "TraderModifiers": {
+        "PriceModifier": 1,
+        "RestockTimerModifier": 1,
+        "StockModifier": 1
+    },
+    "UnitStatModifiers_Global": {
+        "LevelIncrease": 1,
+        "MaxHealthModifier": 1,
+        "PowerModifier": 1
+    },
+    "UnitStatModifiers_VBlood": {
+        "LevelIncrease": 0,
+        "MaxHealthModifier": 1,
+        "PowerModifier": 1
+    },
+    "UnlockedAchievements": [],
+    "UnlockedResearchs": [],
+    "VBloodUnitSettings": [],
+    "VampireStatModifiers": {
+        "DamageReceivedModifier": 1,
+        "MaxHealthModifier": 1,
+        "PhysicalPowerModifier": 1,
+        "ResourcePowerModifier": 1,
+        "ReviveCancelDelay": 5,
+        "SiegePowerModifier": 1,
+        "SpellPowerModifier": 1
+    },
+    "WarEventGameSettings": {
+        "Interval": 0,
+        "MajorDuration": 4,
+        "MinorDuration": 4,
+        "ScalingPlayers1": {
+            "DropModifier": 1,
+            "PointsModifier": 1
+        },
+        "ScalingPlayers2": {
+            "DropModifier": 0.5,
+            "PointsModifier": 0.5
+        },
+        "ScalingPlayers3": {
+            "DropModifier": 0.25,
+            "PointsModifier": 0.25
+        },
+        "ScalingPlayers4": {
+            "DropModifier": 0.25,
+            "PointsModifier": 0.25
+        },
+        "WeekdayTime": {
+            "EndHour": 23,
+            "EndMinute": 59,
+            "StartHour": 0,
+            "StartMinute": 0
+        },
+        "WeekendTime": {
+            "EndHour": 23,
+            "EndMinute": 59,
+            "StartHour": 0,
+            "StartMinute": 0
+        }
+    }
+}

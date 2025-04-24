@@ -1,0 +1,15 @@
+{
+    "AutoSaveCount": 10,
+    "AutoSaveInterval": 120,
+    "Description": "A Wine powered V Rising Server",
+    "GameDifficultyPreset": "default",
+    "GameSettingsPreset": "",
+    "Name": "V Rising Server | Powered by Wine",
+    "Password": "",
+    "Rcon": {
+        "Enabled": true,
+        "Password": "internal",
+        "Port": 9001
+    },
+    "SaveName": "world1"
+}
