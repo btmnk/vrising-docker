@@ -6,9 +6,9 @@ services:
     environment:
       - TZ=Europe/Berlin
     volumes:
-      - "./server:/mnt/vrising/server"
-      - "./data:/mnt/vrising/data"
-      - "./settings:/mnt/vrising/settings"
+      - "${SERVER_DIR}:/mnt/vrising/server"
+      - "${DATA_DIR}:/mnt/vrising/data"
+      - "${SETTINGS_DIR}:/mnt/vrising/settings"
     ports:
       - "9876:9876/udp"
       - "9877:9877/udp"
